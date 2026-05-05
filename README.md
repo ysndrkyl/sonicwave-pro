@@ -17,7 +17,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Image Sequence Setup
 
-The scrollytelling engine expects **120 frames** at:
+The scrollytelling engine expects **300 frames** at:
 
 ```
 /public/assets/sequence/ezgif-frame-0001.png
@@ -83,7 +83,7 @@ sonicwave-pro/
 │   ├── i18n.ts             # All EN/DE/TR translations
 │   └── LanguageContext.tsx # React context for language state
 ├── public/
-│   └── assets/sequence/    # ← PUT YOUR 120 FRAMES HERE
+│   └── assets/sequence/    # ← PUT YOUR 300 FRAMES HERE
 ├── tailwind.config.ts
 ├── next.config.ts
 └── package.json
@@ -95,7 +95,7 @@ sonicwave-pro/
 
 The `CanvasScroll` component works as follows:
 
-1. **Preloading**: On mount, all 120 `Image` objects are created simultaneously. A loading screen with progress bar is shown until complete.
+1. **Preloading**: On mount, all 300 `Image` objects are created simultaneously. A loading screen with progress bar is shown until complete.
 
 2. **Scroll tracking**: Framer Motion's `useScroll` with `offset: ["start start", "end end"]` on the 1440px-tall sticky container gives `scrollYProgress` from 0→1.
 
