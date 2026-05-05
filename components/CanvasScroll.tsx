@@ -154,7 +154,7 @@ export default function CanvasScroll() {
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
 
-      // İlk kareyi yeni boyutlarla çiz
+     
       drawFrame(Math.round(currentFrameRef.current));
     };
 
