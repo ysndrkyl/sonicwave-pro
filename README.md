@@ -20,28 +20,28 @@ Open [http://localhost:3000](http://localhost:3000).
 The scrollytelling engine expects **120 frames** at:
 
 ```
-/public/assets/sequence/frame_0001.png
-/public/assets/sequence/frame_0002.png
+/public/assets/sequence/ezgif-frame-0001.png
+/public/assets/sequence/ezgif-frame-0002.png
 ...
-/public/assets/sequence/frame_0120.png
+/public/assets/sequence/ezgif-frame-0003.png
 ```
 
-### From your provided frames (19 images)
+### From your provided frames (300 images)
 
-You provided 19 frames. To fill all 120 slots, you have two options:
+You provided 300 frames. To fill all 300 slots, you have two options:
 
 **Option A — Rename & interpolate (recommended)**
 
 Use FFmpeg to interpolate missing frames:
 ```bash
 # First rename your existing frames to fit the numbering scheme
-# Then interpolate to 120 frames using minterpolate
-ffmpeg -i frame_%04d.png -vf minterpolate=fps=30:mi_mode=mci output_%04d.png
+# Then interpolate to 300 frames using minterpolate
+ffmpeg -i ezgif-frame-%01d.png -vf minterpolate=fps=30:mi_mode=mci output_%04d.png
 ```
 
 **Option B — Use the provided frames directly (quick demo)**
 
-Rename your 230 files sequentially:
+Rename your 300 files sequentially:
 ```
 → ezgif-frame-0001.png
 → ezgif-frame-0002.png
