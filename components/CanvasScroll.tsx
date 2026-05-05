@@ -78,11 +78,11 @@ export default function CanvasScroll() {
     const img = framesRef.current[index];
     if (!img || !img.complete || img.naturalWidth === 0) return;
 
-    // FİZİKSEL ÇİZİM BOYUTLARI
+  
     const canvasWidth = canvas.width;
     const canvasHeight = canvas.height;
 
-    // COVER HESAPLAMA: Görseli bozmadan alanı dolduracak ölçek
+    
     const scale = Math.max(
       canvasWidth / img.naturalWidth,
       canvasHeight / img.naturalHeight,
@@ -90,7 +90,7 @@ export default function CanvasScroll() {
     const drawWidth = img.naturalWidth * scale;
     const drawHeight = img.naturalHeight * scale;
 
-    // MERKEZLEME NOKTASI (Screenshot'taki sol kaymayı bu satır çözer)
+   
     const drawX = (canvasWidth - drawWidth) / 2;
     const drawY = (canvasHeight - drawHeight) / 2;
 
@@ -142,7 +142,7 @@ export default function CanvasScroll() {
       setActiveOverlayKey(active?.key ?? null);
   });
 
-  // RESOLUTION & CENTER FIX
+ 
   useEffect(() => {
     const handleResize = () => {
       const canvas = canvasRef.current;
@@ -159,9 +159,9 @@ export default function CanvasScroll() {
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Başlangıçta çalıştır
+    handleResize(); 
 
-    // Bazı tarayıcılar yükleme anında yanlış genişlik verebilir, 100ms sonra tekrar kontrol et
+    
     const timer = setTimeout(handleResize, 100);
 
     return () => {
