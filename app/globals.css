@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-syne: 'Syne', sans-serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-dm-mono: 'DM Mono', monospace;
+  --bg: #ffffff;
+  --ember: #FF4500;
+  --plasma: #FFD700;
+  --text-primary: rgba(255,255,255,0.92);
+  --text-secondary: rgba(255,255,255,0.55);
+  --border: rgba(255,255,255,0.08);
+}
+
+/* 1. Temel Reset ve Mobil Viewport Fix */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* Mobilde uzun basınca çıkan menüyü engeller (Canvas etkileşimi için) */
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  /* Adres çubuğu değişimlerinde zıplamayı önleyen kritik ayar */
+  height: -webkit-fill-available;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-dm-sans);
+  
+  /* Yatay kaymayı kesin olarak engeller */
+  overflow-x: hidden;
+  width: 100%;
+  
+  /* Mobilde 100vh sorununu çözer */
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Mobildeki o "lastik" efektini Canvas kısmında durdurur */
+  overscroll-behavior-y: none;
+}
+
+/* 2. Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ember);
+  border-radius: 10px;
+}
+
+/* 3. Selection Styles */
+::selection {
+  background: var(--ember);
+  color: #fff;
+}
+
+/* 4. Film Grain Overlay (Performans Odaklı) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  /* Hardware acceleration için */
+  transform: translateZ(0);
+}
+
+/* 5. Typography & Utility Classes */
+.font-display {
+  font-family: var(--font-syne);
+}
+.font-body {
+  font-family: var(--font-dm-sans);
+}
+.font-mono {
+  font-family: var(--font-dm-mono);
+}
+
+/* 6. Canvas Optimize */
+canvas {
+  display: block;
+  /* Dokunmatik kaydırmayı tarayıcıya bırakma, kodla yönet */
+  touch-action: none;
+  /* Kenarların titremesini önlemek için */
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* 7. Input & Focus */
+input:focus, textarea:focus {
+  outline: none;
+}
+
+/* 8. Desktop Custom Cursor Fix */
+@media (hover: hover) {
+  /* Sadece mouse kullanan cihazlarda özel imleç istiyorsan burası aktif kalmalı */
+  /* Eğer kendi cursor componentin varsa body'ye cursor-none ver */
+  .custom-cursor-active * {
+     cursor: none !important;
+  }
+}
+
+/* 9. Mobil Duyarlılık İçin Ekstra Helper */
+@layer utilities {
+  .h-dvh {
+    height: 100dvh;
+  }
+  .min-h-dvh {
+    min-height: 100dvh;
+  }
+}
